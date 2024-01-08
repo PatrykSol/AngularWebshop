@@ -1,1 +1,37 @@
-<p>product works!</p>
+<div style="display: flex; justify-content: space-between; margin-top: 20px;">
+  <h1 *ngIf="products" style="color: #fff;">Products({{products.length}}):</h1>
+<button class="add-to-cart-button" (click)="addProduct()">Add a product</button>
+</div>
+<div class="product-wrapper">
+  <div class="product-container">
+<div *ngFor="let product of products" (click)="redirectToProductDetails(product.id) " class="product-item">
+    <div>
+    <h3>€ {{ product.price }}</h3>
+    </div>
+
+    <div class="product-image" *ngIf="product.imageUrls && product.imageUrls.length > 0">
+          <img [src]="product.imageUrls[0]" alt="Product Image">
+      </div>
+      <div class="product-image" *ngIf="!product.imageUrls || product.imageUrls.length === 0">
+        No images available.
+      </div>
+      <h2>{{ product.name }}</h2>
+      <div *ngIf="product.stockquantity > 3" class="in-stock">
+        <p class="stock-circle"></p>
+        <span>In Stock</span>
+      </div>
+      <div *ngIf="product.stockquantity === 0" class="out-of-stock">
+        <p class="stock-circle"></p>
+        <span>Out of Stock</span>
+        </div>
+        <div *ngIf="product.stockquantity <= 3 && product.stockquantity > 0" class="almost-out-of-stock">
+          <p class="stock-circle"></p>
+          <span>In Stock</span>
+        </div>
+        <button disabled *ngIf="product.stockquantity === 0" class="out-of-stock-button">Out Of Stock</button>   
+        <button  *ngIf="product.stockquantity > 0" (click)="handleButtonClick($event, product)" class="add-to-cart-button">Add To Cart
+        </button>
+    </div>
+</div>
+
+</div>

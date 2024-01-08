@@ -1,0 +1,13 @@
+<div class="order-wrapper">
+  <h1 *ngIf="orders" style="color: #fff;">Orders({{orders.length}}):</h1>
+    <div *ngFor="let order of orders" class="order">
+      <p>{{ order.id }}</p>
+      <div *ngFor="let orderProduct of order.orderProducts" class="order-details">
+        <img *ngIf="orderProduct.product.imageUrls && orderProduct.product.imageUrls.length > 0"
+             [src]="removeBraces(orderProduct.product.imageUrls[0])"
+             style="width: 75px; height: 75px; object-fit: contain;">
+             <p class="name">{{ orderProduct.product.name }}</p>
+             <p class="quantity">{{ orderProduct.quantity }}</p>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,12 @@
+<div class="category-container">
+<div class="category-wrapper">
+    <div *ngFor="let productCategory of productCategories" class="product-card" (click)="selectCategory(productCategory.id)">
+        <h2>{{ productCategory.name }}</h2>
+        <div class="product-image" *ngIf="productCategory.imageUrl">
+          <img [src]="productCategory.imageUrl" alt="Product Image">
+        </div>
+      </div>
+</div>
+</div>
+
+  

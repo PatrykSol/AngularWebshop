@@ -1,1 +1,37 @@
-<p>product-detail works!</p>
+<div class="wrapper">
+<div class="container">
+    <div class="image-slider" *ngIf="selectedProduct">
+    <img *ngIf="selectedProduct.imageUrls && selectedProduct.imageUrls.length > 0" [src]="selectedProduct.imageUrls[currentIndex]" alt="Product Image">
+    
+    </div>
+    <div class="gallery-container">
+        <button (click)="prevImage()" class="nav-button">&#9665;</button>
+    <div class="thumbnail-gallery" *ngIf="selectedProduct">
+        <img *ngFor="let imageUrl of selectedProduct.imageUrls; let i = index" 
+            [src]="imageUrl" 
+            alt="Product Thumbnail" 
+            [class.selected]="i === currentIndex" 
+            (click)="selectThumbnail(i)">
+  </div>
+  <button (click)="nextImage()" class="nav-button">&#9655;</button>
+    </div>
+</div>
+<div class="product-details">
+    <h1>{{ selectedProduct?.name }}</h1>
+    <p>In Stock: {{ selectedProduct?.stockquantity}}</p>
+    <h3>€ {{ selectedProduct?.price }}</h3>
+    <div class="add-to-cart">
+    <div class="quantity-container">
+        <button class="quantity" (click)="decrementQuantity()">-</button>
+        <p>{{ selectedQuantity }}</p>
+        <button class="quantity" (click)="incrementQuantity()">+</button>
+      </div>
+      <div *ngIf="selectedProduct">
+      <button disabled *ngIf="selectedProduct?.stockquantity === 0" class="out-of-stock-button">Out Of Stock</button>   
+      <button  *ngIf="selectedProduct.stockquantity > 0" (click)="handleButtonClick($event, selectedProduct)" class="add-to-cart-button">Add To Cart
+      </button>    
+    </div>
+    </div>
+</div>
+</div>
+<button class="back-button" (click)="goBack()">Back</button>

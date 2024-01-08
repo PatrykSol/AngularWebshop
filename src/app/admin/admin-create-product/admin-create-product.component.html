@@ -1,0 +1,40 @@
+<div class="create-wrapper" style="margin-top: 100px;">
+  <div class="create">
+  <h1>Create Product:</h1>
+    <form (ngSubmit)="addProduct()" #productForm="ngForm" style="color: #fff;">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" name="productName" [(ngModel)]="name" required>
+
+    <label for="productDescription">Product Description:</label>
+    <textarea id="productDescription" name="productDescription" [(ngModel)]="description" required></textarea>
+
+    <label for="productManufacturer">Product Manufacturer:</label>
+    <input type="text" id="productManufacturer" name="productManufacturer" [(ngModel)]="manufacturer" required>
+
+    <label for="productPrice">Product Price:</label>
+    <input type="number" id="productPrice" name="productPrice" [(ngModel)]="price" required>
+
+    <label for="productStockQuantity">Product Stock Quantity:</label>
+    <input type="number" id="productStockQuantity" name="productStockQuantity" [(ngModel)]="stockQuantity" required>
+
+    <label for="productCategoryID">Product Category:</label>
+    <select id="productCategoryID" name="productCategoryID" [(ngModel)]="categoryId" required>
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+    <label for="productImageUrls1">Product Images (At least 1 required)</label>
+    <div style="display: flex; flex-direction: column; width: 400px;">
+    <input placeholder="image url" type="text" id="productImageUrls1" name="productImageUrls1" [(ngModel)]="images[0]" required>
+    <input placeholder="image url" type="text" id="productImageUrls2" name="productImageUrls2" [(ngModel)]="images[1]">
+    <input placeholder="image url" type="text" id="productImageUrls3" name="productImageUrls3" [(ngModel)]="images[2]">
+    <input placeholder="image url" type="text" id="productImageUrls4" name="productImageUrls4" [(ngModel)]="images[3]">
+    </div>
+    <button type="submit" [disabled]="productForm.invalid" [ngClass]="{'create-button': !productForm.invalid, 'disabled-button': productForm.invalid}">
+      Add Product
+    </button>  
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  </form>
+  <button class="back-button" (click)="goBack()">Back</button>
+</div>
+</div>
+

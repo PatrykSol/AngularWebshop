@@ -1,0 +1,14 @@
+<header class="dark-header">
+    <div class="logo">
+      <a routerLink="/">Music</a>
+    </div>
+    <nav class="nav-links">
+      <a routerLink="/admin" *ngIf="user?.role === 'ADMIN'">ADMIN</a>
+      <a *ngIf="!user" routerLink="/login">Login</a>
+      <a *ngIf="user" (click)="logout()">Logout</a>
+      <div style="display: flex; justify-content: end; align-items: center; margin-right: 10px;">
+        <img style="filter: invert(100); margin-right: 20px;" routerLink="/cart" src="../../assets/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg"> 
+        <a style="position: absolute; right: 5px;">({{numberOfItems}})</a>
+      </div>
+    </nav>
+  </header>

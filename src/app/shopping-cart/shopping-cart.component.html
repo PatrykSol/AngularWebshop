@@ -1,0 +1,42 @@
+<div style="display: flex; margin-top: 70px;">
+<div class="item-wrapper">
+    <div *ngFor="let cartItem of cartItems" class="item">
+        <img [src]="cartItem.item.imageUrls[0]"> 
+        <h6>{{ cartItem.item.name }}</h6>
+        <p>{{ cartItem.item.price }}</p>
+        <div class="quantity-container">
+            <button (click)="removeItem(cartItem.item)">-</button>
+            <p>{{ cartItem.quantity }}</p>
+            <button (click)="addItem(cartItem.item)">+</button>    
+        </div>
+    </div>
+</div>
+<button class="back-button" (click)="goBack()">Back</button>
+<h1 class="empty-cart" *ngIf="cartItems.length === 0">CART IS EMPTY
+</h1>
+<form #checkoutForm="ngForm" (ngSubmit)="submitForm(checkoutForm)" class="" *ngIf="cartItems.length > 0">
+    <div class="user-info">
+    <h2>Customer Information</h2>
+    <div class="inputs">
+      <label for="name">Name:</label>
+      <input *ngIf="user" type="text" id="name" name="name" [(ngModel)]="user.username" required />
+      <input *ngIf="!user" type="text" id="name" name="name" ngModel required />
+
+    </div>
+    <div class="inputs">
+      <label for="email">Email:</label>
+      <input *ngIf="user" type="email" id="email" name="email" [(ngModel)]="user.email" required />
+      <input *ngIf="!user" type="email" id="email" name="email" ngModel required />
+
+    </div>
+    <div class="inputs">
+        <label for="address">Address:</label>
+        <input type="text" id="text" name="text" ngModel required />
+      </div>
+    <div style="display: flex; justify-content: space-between;">
+        <button type="submit" class="checkout-button">Checkout</button>
+        <p>Total Price: {{ totalPrice | currency:'USD' }}</p>
+    </div>
+  </div>
+</form>
+</div>
