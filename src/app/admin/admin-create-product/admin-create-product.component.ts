@@ -76,7 +76,6 @@ export class AdminCreateProductComponent {
     this.http.post<Product>(addProductApiUrl, this.newProduct)
       .subscribe(
         (addedProduct) => {
-          console.log('Product added successfully:', addedProduct);
           alert('Product added successfully.');
 
           setTimeout(() => {
@@ -84,7 +83,6 @@ export class AdminCreateProductComponent {
           }, 3000);
         },
         (error) => {
-          console.error('Error adding product:', error);
           this.errorMessage = error
         }
       );
