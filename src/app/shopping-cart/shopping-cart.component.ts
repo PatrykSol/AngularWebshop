@@ -42,9 +42,6 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.calculateTotalPrice();
-    // this.authService.user$.subscribe(user => {
-    //   this.user = user;
-    // });
   }
 
   removeItem(item: Product): void {
@@ -92,7 +89,5 @@ export class ShoppingCartComponent implements OnInit {
             this.location.back();
             this.cartService.clearCart();
           }, 3000);
-      
-    
   }  
 }
