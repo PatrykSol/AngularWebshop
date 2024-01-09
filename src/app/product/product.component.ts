@@ -5,6 +5,7 @@ import { Product } from '../model/Product.model';
 import { Router } from '@angular/router';
 import { ProductCategoryComponent } from '../product-category/product-category.component';
 import { CartService } from '../service/ShoppingCart.service';
+import { AuthService } from '../service/Auth.service';
 
 
 @Component({
@@ -17,9 +18,10 @@ import { CartService } from '../service/ShoppingCart.service';
 export class ProductComponent implements OnInit {
   products: Product[] = []; 
   selectedProduct: Product | undefined;
+  error: string = ''
   
 
-  constructor(private http: HttpClient,private router: Router,private cartService: CartService) {}
+  constructor(private http: HttpClient,private router: Router,private cartService: CartService,private authService: AuthService) {}
 
   ngOnInit() {
     
@@ -27,8 +29,10 @@ export class ProductComponent implements OnInit {
   }
 
   fetchProducts() {
-    const apiUrl = 'http://localhost:8081/api/v1/product';
+    const username = this.authService.getUser()?.username || ''; 
 
+    const apiUrl = `http://localhost:8081/api/v1/product?username=${username}`;
+  
     this.http.get<Product[]>(apiUrl)
       .subscribe(
         (data) => {
@@ -38,13 +42,13 @@ export class ProductComponent implements OnInit {
               product.imageUrls = product.imageUrls.map(url => url.replace('{', '').replace('}', ''));
             }
           });
-          console.log(this.products);
         },
         (error) => {
-          console.error('Error fetching products:', error);
+          this.error = error
         }
       );
   }
+  
 
 
   redirectToProductDetails(productId: number) {

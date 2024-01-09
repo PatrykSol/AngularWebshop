@@ -3,6 +3,7 @@ import { Product } from '../../model/Product.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule,Location } from '@angular/common';
+import { AuthService } from '../../service/Auth.service';
 
 
 @Component({
@@ -51,15 +52,15 @@ export class AdminCreateProductComponent {
   ];
   
 
-  constructor(private http: HttpClient,private location: Location) {}
+  constructor(private http: HttpClient,private location: Location,private authService: AuthService) {}
 
   addProduct() {
     const validImages = this.images.filter(url => url.trim() !== '').slice(0, 4);
+    const username = this.authService.getUser()?.username || ''; 
 
-   
-
-    const addProductApiUrl = 'http://localhost:8081/api/v1/product';
-
+  
+    const addProductApiUrl = `http://localhost:8081/api/v1/product?username=${username}`;
+  
     this.newProduct.name = this.name;
     this.newProduct.categoryId = this.categoryId;
     this.newProduct.description = this.description;
@@ -67,26 +68,27 @@ export class AdminCreateProductComponent {
     this.newProduct.price = this.price;
     this.newProduct.stockquantity = this.stockQuantity;
     this.newProduct.imageUrls = ['{' + validImages.join(',') + '}'];
-
+  
     if (this.newProduct.imageUrls.length < 1) {
       alert('Please provide at least one image URL.');
       return;
     }
-
+  
     this.http.post<Product>(addProductApiUrl, this.newProduct)
       .subscribe(
         (addedProduct) => {
           alert('Product added successfully.');
-
+  
           setTimeout(() => {
             this.location.back();
           }, 3000);
         },
         (error) => {
-          this.errorMessage = error
+          this.errorMessage = error;
         }
       );
   }
+  
 
   goBack(): void {
     this.location.back();

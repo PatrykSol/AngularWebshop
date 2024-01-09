@@ -3,6 +3,7 @@ import { Order } from '../../model/Order.model';
 import { OrderService } from '../../service/Order.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../service/Auth.service';
 
 @Component({
   selector: 'app-admin-orders',
@@ -13,8 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AdminOrdersComponent {
   orders: Order[] = [];
+  
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService,private authService: AuthService) {}
 
 
   ngOnInit(): void {
@@ -22,8 +24,9 @@ export class AdminOrdersComponent {
   }
 
   loadOrders() {
-    this.orderService.fetchOrders().subscribe(
-      (data) => {
+    const username = this.authService.getUser()?.username || ''; 
+
+    this.orderService.fetchOrders(username).subscribe(      (data) => {
         this.orders = data;
       },
       (error) => {

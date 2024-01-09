@@ -13,8 +13,10 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  fetchOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.apiUrl).pipe(
+  fetchOrders(username: string): Observable<Order[]> {
+    const urlWithParams = `${this.apiUrl}?username=${username}`;
+    
+    return this.http.get<Order[]>(urlWithParams).pipe(
       catchError((error) => {
         throw error;
       })
@@ -27,18 +29,7 @@ export class OrderService {
     return this.http.get<Order>(url);
   }
 
-  // saveOrder(order: Order): Observable<Order> {
-  //   return this.http.post<Order>(this.apiUrl, order).pipe(
-  //     catchError((error) => {
-  //       console.error('Error saving order:', error);
-  //       throw error;
-  //     })
-  //   );
-  // }
-
-
   public saveOrder(order: Order) {
-    console.log('Order to be sent:', order);
  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -46,14 +37,7 @@ export class OrderService {
  
     this.http.post(this.apiUrl, order, { headers })
       .subscribe(data => {
-        console.log(data);
+        
       });
  }
- 
-
-//  public createOrder(data: OrderProduct[], customer: string): void {
-//   const order: Order = new Order('TestId', 'Product order', customer, data, '');
-//   console.log("Data: " + data)
-//   this.saveOrder(order);
-// }
 }

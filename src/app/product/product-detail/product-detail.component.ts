@@ -19,6 +19,7 @@ export class ProductDetailComponent implements OnInit{
   selectedProduct: Product | undefined;
   currentIndex = 0;
   selectedQuantity: number = 1;
+  error:string = ''
 
   constructor(private http: HttpClient, private route: ActivatedRoute,private cartService: CartService,private location: Location) {}
 
@@ -36,13 +37,12 @@ export class ProductDetailComponent implements OnInit{
       .subscribe(
         (data) => {
           this.selectedProduct = data;
-          console.log(this.selectedProduct);
           if (this.selectedProduct.imageUrls && this.selectedProduct.imageUrls.length > 0) {
             this.selectedProduct.imageUrls = this.selectedProduct.imageUrls.map(url => url.replace('{', '').replace('}', ''));
           }
         },
         (error) => {
-          console.error('Error fetching product:', error);
+          this.error = error
         }
       );
   }

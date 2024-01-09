@@ -83,11 +83,13 @@ export class ShoppingCartComponent implements OnInit {
       };
   
       this.orderService.saveOrder(newOrder);
+      this.cartService.clearCart();
       alert('Order placed sucessfully.');
 
           setTimeout(() => {
             this.location.back();
-            this.cartService.clearCart();
-          }, 3000);
+          }, 1500);
+      
+    
   }  
 }
