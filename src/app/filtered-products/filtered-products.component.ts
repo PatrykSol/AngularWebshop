@@ -28,7 +28,7 @@ export class FilteredProductsComponent implements OnInit {
 
 
   fetchCategoriezProducts(id: number) {
-    const apiUrl = `http://localhost:8081/api/v1/product/category/${id}`;
+    const apiUrl = `http://localhost:8080/api/v1/product/category/${id}`;
 
     this.http.get<Product[]>(apiUrl)
       .subscribe(

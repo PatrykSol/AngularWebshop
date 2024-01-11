@@ -56,10 +56,10 @@ export class AdminCreateProductComponent {
 
   addProduct() {
     const validImages = this.images.filter(url => url.trim() !== '').slice(0, 4);
-    const username = this.authService.getUser()?.username || ''; 
+    const id = this.authService.getUser()?.id || ''; 
 
   
-    const addProductApiUrl = `http://localhost:8081/api/v1/product?username=${username}`;
+    const addProductApiUrl = `http://localhost:8080/api/v1/product?username=${id}`;
   
     this.newProduct.name = this.name;
     this.newProduct.categoryId = this.categoryId;

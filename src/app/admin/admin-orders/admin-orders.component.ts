@@ -24,9 +24,9 @@ export class AdminOrdersComponent {
   }
 
   loadOrders() {
-    const username = this.authService.getUser()?.username || ''; 
+    const id = this.authService.getUser()?.id || ''; 
 
-    this.orderService.fetchOrders(username).subscribe(      (data) => {
+    this.orderService.fetchOrders(id).subscribe(      (data) => {
         this.orders = data;
       },
       (error) => {

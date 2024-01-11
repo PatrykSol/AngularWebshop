@@ -8,7 +8,7 @@ import { User } from '../model/User.model';
   providedIn: 'root',
 })
 export class RegisterService {
-  private baseURL: string = 'http://localhost:8081';
+  private baseURL: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 

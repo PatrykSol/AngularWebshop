@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseURL: string = 'http://localhost:8081';
+  private baseURL: string = 'http://localhost:8080';
 
   private userSubject = new Subject<any>();
   user$ = this.userSubject.asObservable();
@@ -51,13 +51,9 @@ export class AuthService {
   }
 
   logout(): void {
-    this.userRole = '';
     this.user = null;
-    localStorage.removeItem('user'); // Remove user from localStorage
-    
-    // Notify subscribers (components) about the logout
+    localStorage.removeItem('user');
     this.userSubject.next(null);
-
     this.router.navigate(['/login']);
   }
 

@@ -9,12 +9,12 @@ import { OrderProduct } from '../model/OrderProduct.model';
   providedIn: 'root',
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:8081/api/v1/orders';
+  private apiUrl = 'http://localhost:8080/api/v1/orders';
 
   constructor(private http: HttpClient) {}
 
-  fetchOrders(username: string): Observable<Order[]> {
-    const urlWithParams = `${this.apiUrl}?username=${username}`;
+  fetchOrders(id: string): Observable<Order[]> {
+    const urlWithParams = `${this.apiUrl}?id=${id}`;
     
     return this.http.get<Order[]>(urlWithParams).pipe(
       catchError((error) => {
