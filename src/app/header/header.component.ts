@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../service/Auth.service';
-import { CommonModule } from '@angular/common';
-import { User } from '../model/User.model';
 import { CartService } from '../service/ShoppingCart.service';
 
 @Component({

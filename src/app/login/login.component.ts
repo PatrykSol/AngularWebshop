@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../service/Auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,22 +11,17 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.less',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService,private router: Router) {}
 
-  ngOnInit(): void {
-
-  }
-
   login(): void {
     this.authService.login(this.username, this.password).subscribe(
       () => {
         this.authService.getUserRole();
-  
         const userRole = this.authService.getUserRole();
   
         if (userRole === 'ADMIN') {

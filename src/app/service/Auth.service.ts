@@ -1,4 +1,3 @@
-// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, catchError, map, throwError } from 'rxjs';
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseURL: string = 'http://localhost:8080';
+  private baseURL: string = 'http://212.132.66.236:8080';
 
   private userSubject = new Subject<any>();
   user$ = this.userSubject.asObservable();
@@ -17,7 +16,6 @@ export class AuthService {
   user: User | null = null;
 
   constructor(private http: HttpClient, private router: Router) {
-    // Retrieve user from localStorage on service initialization
     const storedUser = localStorage.getItem('user');
     this.user = storedUser ? JSON.parse(storedUser) : null;
   }
@@ -32,7 +30,7 @@ export class AuthService {
       }),
       map((user: User) => {
         this.setUser(user);
-        localStorage.setItem('user', JSON.stringify(user)); // Save user to localStorage
+        localStorage.setItem('user', JSON.stringify(user));
       })
     );
   }

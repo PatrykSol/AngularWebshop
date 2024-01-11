@@ -2,7 +2,6 @@
 <div class="container">
     <div class="image-slider" *ngIf="selectedProduct">
     <img *ngIf="selectedProduct.imageUrls && selectedProduct.imageUrls.length > 0" [src]="selectedProduct.imageUrls[currentIndex]" alt="Product Image">
-    
     </div>
     <div class="gallery-container">
         <button (click)="prevImage()" class="nav-button">&#9665;</button>

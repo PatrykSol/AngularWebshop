@@ -51,7 +51,6 @@ export class AdminCreateProductComponent {
 
   ];
   
-
   constructor(private http: HttpClient,private location: Location,private authService: AuthService) {}
 
   addProduct() {
@@ -59,7 +58,7 @@ export class AdminCreateProductComponent {
     const id = this.authService.getUser()?.id || ''; 
 
   
-    const addProductApiUrl = `http://localhost:8080/api/v1/product?username=${id}`;
+    const addProductApiUrl = `http://212.132.66.236:8080/api/v1/product?username=${id}`;
   
     this.newProduct.name = this.name;
     this.newProduct.categoryId = this.categoryId;

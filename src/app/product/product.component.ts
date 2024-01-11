@@ -20,18 +20,16 @@ export class ProductComponent implements OnInit {
   selectedProduct: Product | undefined;
   error: string = ''
   
-
   constructor(private http: HttpClient,private router: Router,private cartService: CartService,private authService: AuthService) {}
 
   ngOnInit() {
-    
     this.fetchProducts();
   }
 
   fetchProducts() {
     const id = this.authService.getUser()?.id || ''; 
 
-    const apiUrl = `http://localhost:8080/api/v1/product?id=${id}`;
+    const apiUrl = `http://212.132.66.236:8080/api/v1/product?id=${id}`;
   
     this.http.get<Product[]>(apiUrl)
       .subscribe(
@@ -49,11 +47,8 @@ export class ProductComponent implements OnInit {
       );
   }
   
-
-
   redirectToProductDetails(productId: number) {
-    this.router.navigate(['/product', productId]);
-    
+    this.router.navigate(['/product', productId]); 
   }
 
   handleButtonClick(event: Event,product: Product) {

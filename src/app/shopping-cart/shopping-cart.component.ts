@@ -6,10 +6,8 @@ import { Subscription } from 'rxjs';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Order } from '../model/Order.model';
-import { OrderProduct } from '../model/OrderProduct.model';
 import { OrderService } from '../service/Order.service';
 import { AuthService } from '../service/Auth.service';
-import { User } from '../model/User.model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -37,7 +35,6 @@ export class ShoppingCartComponent implements OnInit {
       this.cartItems = cart;
       this.calculateTotalPrice();
     });
-
   }
 
   ngOnInit(): void {
@@ -73,7 +70,7 @@ export class ShoppingCartComponent implements OnInit {
 
       const newOrder: Order = {
         id: '',
-        userid: '22222222-2222-2222-2222-222222222222',
+        userid: '',
         order_date: currentDate,
         status: 'Processing',
         orderProducts: this.cartItems.map((cartItem) => ({
@@ -86,10 +83,8 @@ export class ShoppingCartComponent implements OnInit {
       this.cartService.clearCart();
       alert('Order placed sucessfully.');
 
-          setTimeout(() => {
-            this.location.back();
-          }, 1500);
-      
-    
+      setTimeout(() => {
+        this.location.back();
+      }, 1500); 
   }  
 }

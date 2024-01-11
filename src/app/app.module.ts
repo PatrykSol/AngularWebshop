@@ -1,10 +1,8 @@
-// app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app.routes'; // Import your routing module
+import { AppRoutingModule } from './app.routes'; 
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';

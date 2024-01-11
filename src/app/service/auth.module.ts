@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpHandler } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './Auth-guard.service';
 import { AuthService } from './Auth.service';
 import { AdminComponent } from '../admin/admin.component';

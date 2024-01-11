@@ -14,8 +14,6 @@ import { CartService } from '../../service/ShoppingCart.service';
   styleUrl: './product-detail.component.less'
 })
 export class ProductDetailComponent implements OnInit{
-// product-details.component.ts
-
   selectedProduct: Product | undefined;
   currentIndex = 0;
   selectedQuantity: number = 1;
@@ -31,7 +29,7 @@ export class ProductDetailComponent implements OnInit{
   }
 
   fetchProductById(id: number) {
-    const apiUrl = `http://localhost:8080/api/v1/product/${id}`;
+    const apiUrl = `http://212.132.66.236:8080/api/v1/product/${id}`;
 
     this.http.get<Product>(apiUrl)
       .subscribe(

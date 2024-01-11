@@ -16,6 +16,7 @@ import { CartService } from '../service/ShoppingCart.service';
 })
 export class FilteredProductsComponent implements OnInit {
   products: Product[] = []
+  error: string = ''
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -26,9 +27,8 @@ export class FilteredProductsComponent implements OnInit {
 
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute, private cartService: CartService,private location: Location) {}
 
-
   fetchCategoriezProducts(id: number) {
-    const apiUrl = `http://localhost:8080/api/v1/product/category/${id}`;
+    const apiUrl = `http://212.132.66.236:8080/api/v1/product/category/${id}`;
 
     this.http.get<Product[]>(apiUrl)
       .subscribe(
@@ -41,14 +41,13 @@ export class FilteredProductsComponent implements OnInit {
           });
         },
         (error) => {
-         //handle error
+         this.error = error;
         }
       );
   }
   
   redirectToProductDetails(productId: number) {
     this.router.navigate(['/product', productId]);
-    
   }
 
   handleButtonClick(event: Event,product: Product) {

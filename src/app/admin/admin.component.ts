@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../service/Order.service';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { Order } from '../model/Order.model';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { ProductComponent } from '../product/product.component';
 import { Router } from '@angular/router';
@@ -20,10 +17,5 @@ export class AdminComponent {
 
   constructor(private router: Router,
     private authService: AuthService
-    ){
-
-  }
-
-  
-  
+    ){}
 }

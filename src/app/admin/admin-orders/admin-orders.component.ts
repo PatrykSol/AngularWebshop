@@ -14,10 +14,9 @@ import { AuthService } from '../../service/Auth.service';
 })
 export class AdminOrdersComponent {
   orders: Order[] = [];
-  
+  error: string = ''
 
   constructor(private orderService: OrderService,private authService: AuthService) {}
-
 
   ngOnInit(): void {
     this.loadOrders();
@@ -30,7 +29,7 @@ export class AdminOrdersComponent {
         this.orders = data;
       },
       (error) => {
-        //handle error
+        this.error = error
       }
     );
   }
