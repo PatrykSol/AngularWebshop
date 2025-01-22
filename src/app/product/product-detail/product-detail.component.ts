@@ -29,7 +29,7 @@ export class ProductDetailComponent implements OnInit{
   }
 
   fetchProductById(id: number) {
-    const apiUrl = `http://212.132.66.236:8080/api/v1/product/${id}`;
+    const apiUrl = `http://localhost:8080/api/v1/product/${id}`;
 
     this.http.get<Product>(apiUrl)
       .subscribe(

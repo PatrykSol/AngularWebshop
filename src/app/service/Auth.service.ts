@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseURL: string = 'http://212.132.66.236:8080';
+  private baseURL: string = 'http://localhost:8080';
 
   private userSubject = new Subject<any>();
   user$ = this.userSubject.asObservable();

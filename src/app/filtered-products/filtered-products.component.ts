@@ -28,7 +28,7 @@ export class FilteredProductsComponent implements OnInit {
   constructor(private http: HttpClient,private router: Router,private route: ActivatedRoute, private cartService: CartService,private location: Location) {}
 
   fetchCategoriezProducts(id: number) {
-    const apiUrl = `http://212.132.66.236:8080/api/v1/product/category/${id}`;
+    const apiUrl = `http://localhost:8080/api/v1/product/category/${id}`;
 
     this.http.get<Product[]>(apiUrl)
       .subscribe(

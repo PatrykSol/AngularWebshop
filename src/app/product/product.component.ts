@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
   fetchProducts() {
     const id = this.authService.getUser()?.id || ''; 
 
-    const apiUrl = `http://212.132.66.236:8080/api/v1/product?id=${id}`;
+    const apiUrl = `http://localhost:8080/api/v1/product?id=${id}`;
   
     this.http.get<Product[]>(apiUrl)
       .subscribe(
